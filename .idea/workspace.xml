@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8a9ff6f-d642-4b60-890b-5450fe81b917" name="Default Changelist" comment="" />
+    <list default="true" id="b8a9ff6f-d642-4b60-890b-5450fe81b917" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/MachetalkLiver/Broadcaster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/MachetalkLiver/Broadcaster.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/MachetalkLiver/Broadcaster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/MachetalkLiver/Broadcaster.class" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,13 +21,22 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XgjexX0iXhNGyQG7x9KRfaJQaG" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Flash.jar!/" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Public\MachetalkAutomation" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -35,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Broadcaster">
+  <component name="RunManager" selected="JUnit.Broadcaster.doLogin">
     <configuration name="Broadcaster" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MachetalkAutomation" />
       <extension name="coverage">
@@ -47,6 +62,22 @@
       <option name="PACKAGE_NAME" value="com.MachetalkLiver" />
       <option name="MAIN_CLASS_NAME" value="com.MachetalkLiver.Broadcaster" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Broadcaster.aw" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MachetalkAutomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.MachetalkLiver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.MachetalkLiver" />
+      <option name="MAIN_CLASS_NAME" value="com.MachetalkLiver.Broadcaster" />
+      <option name="METHOD_NAME" value="aw" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -69,8 +100,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Broadcaster" />
         <item itemvalue="JUnit.Broadcaster.doLogin" />
+        <item itemvalue="JUnit.Broadcaster.aw" />
+        <item itemvalue="JUnit.Broadcaster" />
       </list>
     </recent_temporary>
   </component>
@@ -86,5 +118,18 @@
       <updated>1581474730084</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
