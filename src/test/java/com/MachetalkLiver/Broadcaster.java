@@ -1,6 +1,7 @@
 package com.MachetalkLiver;
 
 import com.CommonFunctions.AllowPlugin;
+import com.CommonFunctions.GenerateRandom;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
@@ -44,45 +45,36 @@ public class Broadcaster {
         options.addArguments("--use-fake-ui-for-media-stream=1");
         driver = new ChromeDriver();
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        randomName = generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
-        randomUsername = generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10) + "@gmail.com";
-        randomPassword = generateRandomChars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
-
+        randomName = GenerateRandom.chars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
+        randomUsername = GenerateRandom.chars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10) + "@gmail.com";
+        randomPassword = GenerateRandom.chars("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 10);
 
     }
 
-    public static String generateRandomChars(String candidateChars, int length) {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < length; i++) {
-            sb.append(candidateChars.charAt(random.nextInt(candidateChars.length())));
+
+    @AfterClass
+    public void afterTest() {
+        driver.quit();
+    }
+
+    public void loginBroadcaster() throws InterruptedException {
+        //login
+        driver.findElement(By.xpath("//*[contains(@href,'/liver/login/mail/')]")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.xpath("//*[contains(@name,'login_mail')]")).sendKeys("pccaster@gmail.com");
+        driver.findElement(By.xpath("//*[contains(@name,'login_password')]")).sendKeys("admin123");
+        driver.findElement(By.xpath("//*[@id=\"validate\"]/ul/li/button")).click();
+        Thread.sleep(1000);
+        try{
+            driver.findElement(By.id("doGetBonus")).click();
+            Thread.sleep(2000);
+            driver.findElement(By.xpath("//*[@id=\"login_bonus_get\"]/div[1]/div/div[2]/ul/li/button")).click();
+        }catch (Exception e){
+            System.out.println("Bonus already collected!");
         }
-        return sb.toString();
     }
 
-
-//    @AfterClass
-//    public void afterTest() {
-//        driver.quit();
-//    }
-
-    @Test
-    public void functionalityAutomation() throws InterruptedException, FindFailed {
-
-        //allow flash,microphone, camera
-        String url = "https://dev-front.machetalk.jp/liver/";
-        AllowPlugin._base_url(url);
-        driver.get(String.format("chrome://settings/content/siteDetails?site=%s",url));
-        AllowPlugin.flash(driver);
-        AllowPlugin.camera(driver);
-        AllowPlugin.microphone(driver);
-        Thread.sleep(5000);
-
-        Thread.sleep(500);
-        //go to website
-        driver.get("https://dev-front.machetalk.jp/liver/login/");
-        driver.manage().window().maximize();
-
+    public void registration() throws InterruptedException {
         //Registration
         driver.findElement(By.xpath("//*[contains(@href,'/liver/register/mail/')]")).click();
         driver.findElement(By.xpath("//*[contains(@name,'register_mail')]")).sendKeys(randomUsername);
@@ -101,65 +93,103 @@ public class Broadcaster {
         Thread.sleep(2000);
         driver.findElement(By.xpath("//*[@id=\"login_bonus_get\"]/div[1]/div/div[2]/ul/li/button")).click();
         Thread.sleep(1000);
+    }
+
+    public void editProfile(){
+        //edit profile
+        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/profile/edit/')]")).click();
+        driver.findElement(By.xpath("//*[contains(@name,'register_nickname')]")).sendKeys(randomName);
+        Select age = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_age')]")));
+        age.selectByIndex(rand.nextInt(23));
+
+        Select area = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_area_1')]")));
+        area.selectByValue("1");
+
+        Select area2 = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_area_2')]")));
+        area2.selectByIndex(rand.nextInt(46));
+
+        Select job = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_job')]")));
+        job.selectByIndex(rand.nextInt(42));
+
+        driver.findElement(By.id("count_text")).sendKeys(GenerateRandom.chars("ABCDEFGHIJKLMOP",50));
+        driver.findElement(By.id("btn_submit_profileUpdate")).click();
+    }
+
+    public void changePassword() throws InterruptedException {
+        driver.findElement(By.xpath("//*[contains(@data-toggle,'trigger')]")).click();
+        Thread.sleep(500);
+        driver.findElement(By.xpath("//*[contains(@href,'/liver/change/password/')]")).click();
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[contains(@ng-model,'current_password')]")).sendKeys("admin123");
+        driver.findElement(By.xpath("//*[contains(@ng-model,'change_password')]")).sendKeys(randomPassword);
+        driver.findElement(By.xpath("//*[contains(@ng-model,'change_password_again')]")).sendKeys(randomPassword);
+        Thread.sleep(500);
+        driver.findElement(By.xpath("//*[@id=\"validate\"]/ul/li/button")).click();
+        Thread.sleep(7000);
+
+        //revert password  to its original password
+        driver.findElement(By.xpath("//*[contains(@ng-model,'current_password')]")).sendKeys(randomPassword);
+        driver.findElement(By.xpath("//*[contains(@ng-model,'change_password')]")).sendKeys("admin123");
+        driver.findElement(By.xpath("//*[contains(@ng-model,'change_password_again')]")).sendKeys("admin123");
+        Thread.sleep(500);
+        driver.findElement(By.xpath("//*[@id=\"validate\"]/ul/li/button")).click();
+        Thread.sleep(7000);
+
+    }
+
+    @Test
+    public void functionalityAutomation() throws InterruptedException, FindFailed {
+
+        //allow flash,microphone, camera
+        String url = "https://dev-front.machetalk.jp/liver/";
+        AllowPlugin._base_url(url);
+        driver.get(String.format("chrome://settings/content/siteDetails?site=%s",url));
+        AllowPlugin.flash(driver);
+        AllowPlugin.camera(driver);
+        AllowPlugin.microphone(driver);
+        Thread.sleep(5000);
+
+        Thread.sleep(500);
+        //go to website
+        driver.get("https://dev-front.machetalk.jp/liver/login/");
+        driver.manage().window().maximize();
+
+        registration();
 
         //Logout
         driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/logout/')]")).click();
         Thread.sleep(2000);
 
-        //login
-        driver.findElement(By.xpath("//*[contains(@href,'/liver/login/mail/')]")).click();
+        loginBroadcaster();
+
+        editProfile();
+
+        changePassword();
+
+        //go to home
+        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/')]")).click();
+
+        //broadcast
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/live/theme/')]")).click();
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[contains(@name,'login_mail')]")).sendKeys("pccaster@gmail.com");
-        driver.findElement(By.xpath("//*[contains(@name,'login_password')]")).sendKeys("admin123");
+        driver.findElement(By.id("count_text")).sendKeys("test");
+        driver.findElement(By.xpath("//*[contains(@for,'tag_3')]")).click();
         driver.findElement(By.xpath("//*[@id=\"validate\"]/ul/li/button")).click();
-        Thread.sleep(1000);
-        try{
-            driver.findElement(By.id("doGetBonus")).click();
-            driver.findElement(By.xpath("//*[@id=\"login_bonus_get\"]/div[1]/div/div[2]/ul/li/button")).click();
-        }catch (Exception e){
+        Thread.sleep(8000);
 
-        }finally {
-            //edit profile
-            driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/profile/edit/')]")).click();
-            driver.findElement(By.xpath("//*[contains(@name,'register_nickname')]")).sendKeys(randomName);
-            Select age = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_age')]")));
-            age.selectByIndex(rand.nextInt(23));
-
-            Select area = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_area_1')]")));
-            area.selectByValue("1");
-
-            js.executeScript("window.scrollBy(0,1000)");//scroll down to locate other elements
-
-            Select area2 = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_area_2')]")));
-            area2.selectByIndex(rand.nextInt(46));
-
-            Select job = new Select(driver.findElement(By.xpath("//*[contains(@name,'register_job')]")));
-            job.selectByIndex(rand.nextInt(42) + 1);
-
-            driver.findElement(By.id("count_text")).sendKeys(generateRandomChars("ABCDEFGHIJKLMOP",50));
-            driver.findElement(By.id("btn_submit_profileUpdate")).click();
-
-            //broadcast
-            Thread.sleep(2000);
-            driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/live/theme/')]")).click();
-            Thread.sleep(1000);
-            driver.findElement(By.id("count_text")).sendKeys("test");
-            driver.findElement(By.xpath("//*[contains(@for,'tag_3')]")).click();
-            driver.findElement(By.xpath("//*[@id=\"validate\"]/ul/li/button")).click();
-            Thread.sleep(8000);
-
-            //camera
+        //camera
 //        driver.findElement(By.xpath("//*[contains(@label,'Logitech HD Webcam C270 (046d:0825)')]")).click();
-            //microphone
+        //microphone
 //        driver.findElement(By.xpath("//*[contains(@label,'Default - Microphone (HD Webcam C270) (046d:0825)')]")).click();
 
-            System.out.println("Location of the confirm button.");
-            System.out.println("Size: "+driver.findElement(By.id("js-configCoverHide")).getSize());
-            System.out.println("Location: "+driver.findElement(By.id("js-configCoverHide")).getLocation());
+        System.out.println("Location of the confirm button.");
+        System.out.println("Size: "+driver.findElement(By.id("js-configCoverHide")).getSize());
+        System.out.println("Location: "+driver.findElement(By.id("js-configCoverHide")).getLocation());
 
-            driver.findElement(By.id("js-configCoverHide")).click();//confirm broadcast
+        driver.findElement(By.id("js-configCoverHide")).click();//confirm broadcast
 
-            //x and y coordinates method not working.
+        //x and y coordinates method not working.
 //        System.out.println("Location of the live viewer.");
 //        System.out.println("Size: "+driver.findElement(By.xpath("//*[@id=\"live_caster_ready\"]")).getSize());
 //        System.out.println("Location: "+driver.findElement(By.xpath("//*[@id=\"live_caster_ready\"]")).getLocation());
@@ -172,19 +202,19 @@ public class Broadcaster {
 //        System.out.print("Height: "+ (int)mult);
 //        System.out.print("Height:"+ (int)mult2);
 
-            //sikuli framework not working. [error] ImagePath: find: not there: allow.png
-            Thread.sleep(5000);
-            Actions clicker = new Actions(driver);
-            Thread.sleep(5000);
-            Screen s = new Screen();
-            Pattern imgAllow = new Pattern("allow.png");
-            ImagePath.add("allow.png");
-            s.wait(imgAllow, 5000);
-            s.click();
-            s.click();
+        //sikuli framework not working. [error] ImagePath: find: not there: allow.png
+        Thread.sleep(5000);
+        Actions clicker = new Actions(driver);
+        Thread.sleep(5000);
+        Screen s = new Screen();
+        Pattern imgAllow = new Pattern("allow.png");
+        ImagePath.add("allow.png");
+        s.wait(imgAllow, 5000);
+        s.click();
+        s.click();
 
 //        clicker.moveToElement(driver.findElement(By.xpath("//*[@id=\"live_caster_ready\"]")))
 //                .moveByOffset((int)mult, (int)mult2).click().perform();
-        }
+
     }
 }
