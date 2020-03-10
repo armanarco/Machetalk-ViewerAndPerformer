@@ -7,15 +7,14 @@ import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.ImagePath;
-import org.sikuli.script.Pattern;
-import org.sikuli.script.Screen;
+//import org.sikuli.script.FindFailed;
+//import org.sikuli.script.ImagePath;
+//import org.sikuli.script.Pattern;
+//import org.sikuli.script.Screen;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,10 +51,10 @@ public class Broadcaster {
     }
 
 
-    @AfterClass
-    public void afterTest() {
-        driver.quit();
-    }
+//    @After
+//    public void afterTest() {
+//        driver.quit();
+//    }
 
     public void loginBroadcaster() throws InterruptedException {
         //login
@@ -138,7 +137,7 @@ public class Broadcaster {
     }
 
     @Test
-    public void functionalityAutomation() throws InterruptedException, FindFailed {
+    public void functionalityAutomation() throws InterruptedException {
 
         //allow flash,microphone, camera
         String url = "https://dev-front.machetalk.jp/liver/";
@@ -167,11 +166,11 @@ public class Broadcaster {
         changePassword();
 
         //go to home
-        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/')]")).click();
+//        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/')]")).click();
 
         //broadcast
         Thread.sleep(2000);
-        driver.findElement(By.xpath("//*[contains(@href,'http://dev-front.machetalk.jp/liver/live/theme/')]")).click();
+        driver.findElement(By.xpath("//*[contains(@href,'/liver/live/theme/')]")).click();
         Thread.sleep(1000);
         driver.findElement(By.id("count_text")).sendKeys("test");
         driver.findElement(By.xpath("//*[contains(@for,'tag_3')]")).click();
@@ -203,15 +202,15 @@ public class Broadcaster {
 //        System.out.print("Height:"+ (int)mult2);
 
         //sikuli framework not working. [error] ImagePath: find: not there: allow.png
-        Thread.sleep(5000);
-        Actions clicker = new Actions(driver);
-        Thread.sleep(5000);
-        Screen s = new Screen();
-        Pattern imgAllow = new Pattern("allow.png");
-        ImagePath.add("allow.png");
-        s.wait(imgAllow, 5000);
-        s.click();
-        s.click();
+//        Thread.sleep(5000);
+//        Actions clicker = new Actions(driver);
+//        Thread.sleep(5000);
+//        Screen s = new Screen();
+//        Pattern imgAllow = new Pattern("allow.png");
+//        ImagePath.add("allow.png");
+//        s.wait(imgAllow, 5000);
+//        s.click();
+//        s.click();
 
 //        clicker.moveToElement(driver.findElement(By.xpath("//*[@id=\"live_caster_ready\"]")))
 //                .moveByOffset((int)mult, (int)mult2).click().perform();

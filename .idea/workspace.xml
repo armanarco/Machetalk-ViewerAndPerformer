@@ -50,7 +50,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Viewer.doLogin (1)">
+  <component name="RunManager" selected="JUnit.Viewer.functionalityAutomation">
     <configuration name="Broadcaster" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MachetalkAutomation" />
       <extension name="coverage">
@@ -62,22 +62,6 @@
       <option name="PACKAGE_NAME" value="com.MachetalkLiver" />
       <option name="MAIN_CLASS_NAME" value="com.MachetalkLiver.Broadcaster" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Broadcaster.doLogin" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="MachetalkAutomation" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.MachetalkLiver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.MachetalkLiver" />
-      <option name="MAIN_CLASS_NAME" value="com.MachetalkLiver.Broadcaster" />
-      <option name="METHOD_NAME" value="doLogin" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,6 +98,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Viewer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MachetalkAutomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.MachetalkTalk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.MachetalkTalk" />
+      <option name="MAIN_CLASS_NAME" value="com.MachetalkTalk.Viewer" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Viewer.doLogin (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MachetalkAutomation" />
       <extension name="coverage">
@@ -130,12 +129,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Viewer.functionalityAutomation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="MachetalkAutomation" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.MachetalkTalk.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.MachetalkTalk" />
+      <option name="MAIN_CLASS_NAME" value="com.MachetalkTalk.Viewer" />
+      <option name="METHOD_NAME" value="functionalityAutomation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.Viewer.doLogin (1)" />
+        <item itemvalue="JUnit.Viewer.functionalityAutomation" />
+        <item itemvalue="JUnit.Viewer" />
         <item itemvalue="JUnit.Broadcaster" />
+        <item itemvalue="JUnit.Viewer.doLogin (1)" />
         <item itemvalue="JUnit.Broadcaster.testonly" />
-        <item itemvalue="JUnit.Broadcaster.doLogin" />
       </list>
     </recent_temporary>
   </component>
